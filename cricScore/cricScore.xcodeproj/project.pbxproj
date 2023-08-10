@@ -21,6 +21,8 @@
 		870BB4F72A83F8F5002919C8 /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870BB4F62A83F8F5002919C8 /* IntroductionView.swift */; };
 		870BB4F92A83F913002919C8 /* InteractiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870BB4F82A83F913002919C8 /* InteractiveButton.swift */; };
 		870BB4FB2A83FD15002919C8 /* HomePageViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870BB4FA2A83FD15002919C8 /* HomePageViewWrapper.swift */; };
+		870BB4FD2A852714002919C8 /* CustomButtonBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870BB4FC2A852714002919C8 /* CustomButtonBox.swift */; };
+		870BB4FF2A85274F002919C8 /* HomePageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870BB4FE2A85274F002919C8 /* HomePageButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		870BB4F62A83F8F5002919C8 /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
 		870BB4F82A83F913002919C8 /* InteractiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveButton.swift; sourceTree = "<group>"; };
 		870BB4FA2A83FD15002919C8 /* HomePageViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewWrapper.swift; sourceTree = "<group>"; };
+		870BB4FC2A852714002919C8 /* CustomButtonBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonBox.swift; sourceTree = "<group>"; };
+		870BB4FE2A85274F002919C8 /* HomePageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 				870BB4F62A83F8F5002919C8 /* IntroductionView.swift */,
 				870BB4F82A83F913002919C8 /* InteractiveButton.swift */,
 				870BB4FA2A83FD15002919C8 /* HomePageViewWrapper.swift */,
+				870BB4FC2A852714002919C8 /* CustomButtonBox.swift */,
+				870BB4FE2A85274F002919C8 /* HomePageButton.swift */,
 			);
 			path = cricScore;
 			sourceTree = "<group>";
@@ -288,6 +294,8 @@
 				870BB4F92A83F913002919C8 /* InteractiveButton.swift in Sources */,
 				870BB4C32A83F804002919C8 /* cricScoreApp.swift in Sources */,
 				870BB4CF2A83F806002919C8 /* cricScore.xcdatamodeld in Sources */,
+				870BB4FD2A852714002919C8 /* CustomButtonBox.swift in Sources */,
+				870BB4FF2A85274F002919C8 /* HomePageButton.swift in Sources */,
 				870BB4F32A83F8BB002919C8 /* HomePageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

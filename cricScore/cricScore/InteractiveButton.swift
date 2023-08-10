@@ -8,13 +8,9 @@ import UIKit
 
 class InteractiveButton: UIView {
 
-    // Transparent boxes for buttons
-    private let newGameBox = UIView()
-    private let addTeamBox = UIView()
-
-    // Buttons
-    private let newGameButton = UIButton()
-    private let addTeamButton = UIButton()
+    // Transparent boxes for buttons (now inherited from the CustomButtonBox class)
+    private let newGameButton = NewGameButton()
+    private let addTeamButton = AddTeamButton()
 
     // Label to display text based on button click
     private let displayLabel = UILabel()
@@ -29,60 +25,41 @@ class InteractiveButton: UIView {
     }
 
     private func setupViews() {
-        // Button setup inside styled boxes
-        setupButton(newGameButton, withTitle: "New Game", inside: newGameBox)
-        setupButton(addTeamButton, withTitle: "Add Team", inside: addTeamBox)
-
         // Add styled boxes to the view
-        addSubview(newGameBox)
-        addSubview(addTeamBox)
+        addSubview(newGameButton)
+        addSubview(addTeamButton)
 
         // Add label to the view
         addSubview(displayLabel)
         displayLabel.textAlignment = .center
 
-        // Layout boxes, buttons, and label
+        // Layout boxes and label
         setupConstraints()
-    }
-
-    private func setupButton(_ button: UIButton, withTitle title: String, inside box: UIView) {
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.isUserInteractionEnabled = false // Disable button interaction
         
-        box.addSubview(button)
-        box.backgroundColor = UIColor.darkGray
-        box.layer.cornerRadius = 10
-        box.clipsToBounds = true
-
-        button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: box.topAnchor, constant: 10),
-            button.bottomAnchor.constraint(equalTo: box.bottomAnchor, constant: -10),
-            button.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 10),
-            button.trailingAnchor.constraint(equalTo: box.trailingAnchor, constant: -10)
-        ])
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: (title == "New Game" ? #selector(newGameButtonTapped) : #selector(addTeamButtonTapped)))
-        box.addGestureRecognizer(tapGesture)
+        // Attach tap gestures to new buttons
+        let newGameTap = UITapGestureRecognizer(target: self, action: #selector(newGameButtonTapped))
+        newGameButton.addGestureRecognizer(newGameTap)
+        
+        let addTeamTap = UITapGestureRecognizer(target: self, action: #selector(addTeamButtonTapped))
+        addTeamButton.addGestureRecognizer(addTeamTap)
     }
 
     private func setupConstraints() {
-        newGameBox.translatesAutoresizingMaskIntoConstraints = false
-        addTeamBox.translatesAutoresizingMaskIntoConstraints = false
+        newGameButton.translatesAutoresizingMaskIntoConstraints = false
+        addTeamButton.translatesAutoresizingMaskIntoConstraints = false
         displayLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             // Position boxes side by side
-            newGameBox.topAnchor.constraint(equalTo: topAnchor),
-            newGameBox.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            newGameBox.bottomAnchor.constraint(equalTo: bottomAnchor),
-            newGameBox.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5, constant: -15),
+            newGameButton.topAnchor.constraint(equalTo: topAnchor),
+            newGameButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            newGameButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+            newGameButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5, constant: -15), // Take into account the spacing
 
-            addTeamBox.topAnchor.constraint(equalTo: topAnchor),
-            addTeamBox.leadingAnchor.constraint(equalTo: newGameBox.trailingAnchor, constant: 10),
-            addTeamBox.bottomAnchor.constraint(equalTo: bottomAnchor),
-            addTeamBox.widthAnchor.constraint(equalTo: newGameBox.widthAnchor),
+            addTeamButton.topAnchor.constraint(equalTo: topAnchor),
+            addTeamButton.leadingAnchor.constraint(equalTo: newGameButton.trailingAnchor, constant: 10),
+            addTeamButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+            addTeamButton.widthAnchor.constraint(equalTo: newGameButton.widthAnchor),
 
             // Position label below boxes
             displayLabel.topAnchor.constraint(equalTo: bottomAnchor, constant: 10),
@@ -93,31 +70,22 @@ class InteractiveButton: UIView {
     }
 
     @objc private func newGameButtonTapped() {
-        logButtonTap(button: "New Game")
-        highlightButtonBox(newGameBox)
-        unhighlightButtonBox(addTeamBox)
-
+        highlightButtonBox(newGameButton)
+        unhighlightButtonBox(addTeamButton)
         displayLabel.text = "New Game Selected"
     }
 
     @objc private func addTeamButtonTapped() {
-        logButtonTap(button: "Add Team")
-        highlightButtonBox(addTeamBox)
-        unhighlightButtonBox(newGameBox)
-
+        highlightButtonBox(addTeamButton)
+        unhighlightButtonBox(newGameButton)
         displayLabel.text = "Add Team Selected"
     }
 
-    private func highlightButtonBox(_ box: UIView) {
+    private func highlightButtonBox(_ box: CustomButtonBox) {
         box.backgroundColor = UIColor.blue
     }
 
-    private func unhighlightButtonBox(_ box: UIView) {
+    private func unhighlightButtonBox(_ box: CustomButtonBox) {
         box.backgroundColor = UIColor.darkGray
-    }
-
-    // Modular function to log button taps
-    private func logButtonTap(button: String) {
-        print("\(button) was tapped!")
     }
 }
